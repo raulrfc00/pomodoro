@@ -1,175 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación Kanban con Pomodoro</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer</title>
+<!-- Incluir CSS de Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Incluir Opcionalmente JS de Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <style>
-        /* Estilos personalizados para tema oscuro */
-        body {
-            background-color: #343a40; 
-            color: #ffffff; 
-            font-family: 'Roboto', sans-serif;
-        }
-        h1, h2, h3 {
-            font-family: 'Roboto', sans-serif;
-        }
-        .card {
-            background-color: #495057; 
-        }
-        .card-header {
-            background-color: #6c757d; 
-            color: #ffffff; 
-        }
-        .modal-content {
-            background-color: #495057; 
-        }
-        .card-tarea{
-            height: 500px;
-        }
-        .botones{
-            margin-top: 70px;
-            justify-content: space-between;
-        }
-        .pomodoro-header{
-            width: 100%;
-            background-color: rgb(255, 1, 1);
-        }
-        .pomodoro-container{
-            height: 250px;
-        }
 
-    </style>
-                <!-- Sección Pomodoro -->
-                
-                <div class="col-lg-9 mt-5 mx-auto">
-                    <div class="card" style="height: auto;">
-                        <div class="card-header mx-auto text-center pomodoro-header">
-                            <h1>Pomodoro</h1>
-                        </div>
-                        <div class="card-body text-center pomodoro-container">
-                            <!-- Fila para contener las columnas principales -->
-                            <div class="row">
-                                <!-- Columna para el temporizador 25:00 y el botón Start -->
-                                <div class="col-md-4 d-flex flex-column align-items-center">
-                                    <button class="btn btn-dark mb-2 w-70" style="border-radius: 100%;">25:00</button>
-                                    <button class="btn btn-dark">Start</button>
-                                </div>
-                                <!-- Columna para los temporizadores 5:00 y 15:00 -->
-                                <div class="col-md-3 d-flex flex-column align-items-center justify-content-center">
-                                    <button class="btn btn-dark mb-2 w-70" style="border-radius: 100%;">5:00</button>
-                                    <button class="btn btn-dark w-70" style="border-radius: 100%;">15:00</button>
-                                </div>
-                                <!-- Columna para el botón Nueva Tarea -->
-                                <div class="col-md-5 d-flex align-items-center justify-content-center">
-                                    <button class="btn btn-dark mb-1" data-toggle="modal" data-target="#taskModal">Nueva Tarea</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
-    <!-- Modal Configuración Temporizador -->
-    <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="configModalLabel">Configuración del Temporizador</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulario de configuración aquí -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </div>
-        </div>
+<div class="container mt-5">
+  <!-- Sección del temporizador Pomodoro -->
+  <div class="row mb-4">
+    <div class="col text-center">
+      <!-- Temporizador 25:00 -->
+      <button class="btn btn-warning btn-circle btn-xl">25:00</button>
+      <!-- Título Pomodoro -->
+      <h2 class="my-3">POMODORO</h2>
+      <!-- Temporizador 5:00 -->
+      <button class="btn btn-warning btn-circle btn-xl">5:00</button>
+    </div>
+  </div>
+
+  <!-- Sección de controles y tareas -->
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Botones de control -->
+      <button class="btn btn-primary btn-block mb-2">Start</button>
+      <button class="btn btn-secondary btn-block mb-2">New task</button>
+      <button class="btn btn-info btn-block mb-2">25 min work</button>
+      <button class="btn btn-info btn-block mb-2">5 min short rest</button>
+      <button class="btn btn-info btn-block">Long rest 10 min</button>
     </div>
 
-    <!-- Modal Crear Tarea -->
-    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="taskModalLabel">Nueva Tarea</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulario de creación de tarea aquí -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success">Crear Tarea</button>
-                </div>
+    <div class="col-md-9">
+      <div class="row">
+        <!-- Tareas Pendientes -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header bg-danger text-white">PENDING</div>
+            <div class="card-body bg-light">
+              <!-- Aquí van las tareas pendientes -->
             </div>
+          </div>
         </div>
-    </div>
-    <div class="container-fluid mt-4 mx-auto">
-        <div class="row">
-            <!-- Sección Kanban -->
-            <div class="col-lg-9 mx-auto">
-                <div class="row">
-                    <!-- Columnas Kanban -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-light text-dark text-center">
-                                <h2>Pendientes</h2>
-                            </div>
-                            <div class="card-tarea">
-                                <div class="card-body">
-                                    <!-- Contenido de la tarea aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-warning text-white text-center">
-                                <h2>En Curso</h2>
-                            </div>
-                            <div class="card-tarea">
-                                <div class="card-body">
-                                    <!-- Contenido de la tarea aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-success text-white text-center">
-                                <h2>Terminadas</h2>
-                            </div>
-                            <div class="card-tarea">
-                                <div class="card-body">
-                                    <!-- Contenido de la tarea aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Tareas en Progreso -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header bg-warning text-white">IN PROGRESS</div>
+            <div class="card-body bg-light">
+              <!-- Aquí van las tareas en progreso -->
             </div>
+          </div>
         </div>
+        <!-- Tareas Completadas -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header bg-success text-white">COMPLETED</div>
+            <div class="card-body bg-light">
+              <!-- Aquí van las tareas completadas -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+<style>
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+}
 
-    
+.card-header {
+  text-transform: uppercase;
+}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+/* Añadir estilos personalizados aquí */
+
+</style>
 </body>
 </html>
